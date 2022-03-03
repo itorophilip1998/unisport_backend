@@ -6,7 +6,7 @@ const channel = require("./routes/channel");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 // connect Db
 DB();
@@ -31,6 +31,6 @@ app.get("*", (req, res, next) => {
 });
 
 // Port
-app.listen(port || 8000, () => {
-  console.log("App is running");
+app.listen(port, () => {
+  console.log(`App is running @ ${port}`);
 });
