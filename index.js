@@ -1,5 +1,5 @@
 const express = require("express");
-const DB = require("./config/database");
+require("./config/database")();
 // const web = require("./routes/web");
 // const api = require("./routes/api");
 // const channel = require("./routes/channel");
@@ -7,17 +7,15 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 8000;
-
-// connect Db
-// DB();
-
+ 
 // use
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
-// app.use(express.static("public"));
-// app.set("views", "views");
-// app.set("view engine", "hbs");
-// app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static("public"));
+app.set("views", "views");
+app.set("view engine", "hbs");
+app.use(cors());
+
 app.get('/',(req,res)=>{
   res.send("tested")
 })
