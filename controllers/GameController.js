@@ -1,6 +1,4 @@
-const Joi = require("joi");
-const match = require("nodemon/lib/monitor/match");
-const { generateAccessToken, auth, logout } = require("../middleware/auth");
+const Joi = require("joi"); 
 const Game = require("../model/Game"); 
 
 const validator = async (data) => {
@@ -18,13 +16,7 @@ const validator = async (data) => {
     });
     return newData;
   } catch (error) {
-      throw error;
-    // const errors = [];
-    // if (error.isJoi) {
-    //   for (let item of error.details) {
-    //     errors.push({ field: item.path[0], err: item.message });
-    //   }
-    //   res.send({ errors });
+      // throw error; 
     }
   
 };
