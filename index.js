@@ -12,23 +12,26 @@ const port = process.env.PORT || 8000;
 DB();
 
 // use
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static("public"));
-app.set("views", "views");
-app.set("view engine", "hbs");
-app.use(cors());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(express.static("public"));
+// app.set("views", "views");
+// app.set("view engine", "hbs");
+// app.use(cors());
+app.get('/',(req,res)=>{
+  res.send("tested")
+})
 
 // routes
-app.use("/", web);
-app.use("/api", api);
-app.use("/channel", channel);
+// app.use("/", web);
+// app.use("/api", api);
+// app.use("/channel", channel);
 
 // Express Error Handling
-app.get("*", (req, res, next) => {
-  res.render("pageNotFound");
-  next();
-});
+// app.get("*", (req, res, next) => {
+//   res.render("pageNotFound");
+//   next();
+// });
 
 // Port
 app.listen(port, () => {
