@@ -1,8 +1,8 @@
 const express = require("express");
 require("./config/database")();
 const web = require("./routes/web");
-// const api = require("./routes/api");
-// const channel = require("./routes/channel");
+const api = require("./routes/api");
+const channel = require("./routes/channel");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
@@ -16,22 +16,18 @@ app.set("views", "views");
 app.set("view engine", "hbs");
 app.use(cors());
 
-app.get('/',(req,res)=>{
-  res.send("tested")
-})
-
 // routes
-app.use("/web", web);
-// app.use("/api", api);
-// app.use("/channel", channel);
+app.use("/", web);
+app.use("/api", api);
+app.use("/channel", channel);
 
 // Express Error Handling
-// app.get("*", (req, res, next) => {
-//   res.render("pageNotFound");
-//   next();
-// });
+app.get("*", (req, res, next) => {
+  res.render("pageNotFound");
+  next();
+});
 
-// Port
+Port
 app.listen(port, () => {
   console.log(`App is running @ ${port}`);
 });
