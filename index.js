@@ -1,6 +1,6 @@
 const express = require("express");
 require("./config/database")();
-// const web = require("./routes/web");
+const web = require("./routes/web");
 // const api = require("./routes/api");
 // const channel = require("./routes/channel");
 const app = express();
@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 })
 
 // routes
-// app.use("/", web);
+app.use("/web", web);
 // app.use("/api", api);
 // app.use("/channel", channel);
 
