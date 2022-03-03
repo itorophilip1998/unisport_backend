@@ -1,10 +1,10 @@
 const express = require("express");
-// const DB = require("./config/database");
-// const web = require("./routes/web");
-// const api = require("./routes/api");
-// const channel = require("./routes/channel");
+const DB = require("./config/database");
+const web = require("./routes/web");
+const api = require("./routes/api");
+const channel = require("./routes/channel");
 const app = express();
-// const cors = require("cors");
+const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 8000;
 
