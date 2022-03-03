@@ -11,9 +11,9 @@ const port = process.env.PORT || 8000;
 // use
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
-app.set("views", "views");
-app.set("view engine", "hbs");
+// app.use(express.static("public"));
+// app.set("views", "views");
+// app.set("view engine", "hbs");
 app.use(cors());
 
 // routes
@@ -27,7 +27,7 @@ app.get("*", (req, res, next) => {
   next();
 });
 
-Port
+// Port
 app.listen(port, () => {
   console.log(`App is running @ ${port}`);
 });
