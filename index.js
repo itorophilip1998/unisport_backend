@@ -1,7 +1,7 @@
 const express = require("express");
 require("./config/database")();
 const web = require("./routes/web");
-// const api = require("./routes/api");
+const api = require("./routes/api");
 const channel = require("./routes/channel");
 const app = express();
 const cors = require("cors");
@@ -16,7 +16,7 @@ app.use(cors());
 
 // routes
 app.use("/", web);
-// app.use("/api", api);
+app.use("/api", api);
 app.use("/channel", channel);
 
 // Express Error Handling
