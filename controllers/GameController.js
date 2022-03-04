@@ -1,9 +1,10 @@
-const Joi = require("joi"); 
-const Game = require("../model/Game"); 
+const Joi = require("joi");
+const Game = require("../model/Game");
+const Match = require("../model/Match");
 
 const validator = async (data) => {
   try {
-    const schema = Joi.object({ 
+    const schema = Joi.object({
       school_name: Joi.string().required(),
       state: Joi.string().required(),
       year: Joi.date().required(),
@@ -16,26 +17,48 @@ const validator = async (data) => {
     });
     return newData;
   } catch (error) {
-      // throw error; 
-    }
-  
+    // throw error;
+  }
 };
 
 exports.register = async (req, res) => {
-  const newData = await validator(req.body);
-  await Game.create(newData)
-    .then((result) => { 
-      res.json({ result, status: true });
-    })
-    .catch((err) => {
-       res.send(err)
-    });
+  try {
+    const newData = await validator(req.body);
+    await Game.create(newData)
+      .then((result) => {
+        res.json({ result, status: true });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  } catch (error) {}
 };
 
-exports.setMatch = (req, res) => {
-  res.send("Tested");
-}; 
+exports.setMatch = async (req, res) => {
+  try {
+    const schema = Joi.object({
+      away: Joi.string().required(),
+      home: Joi.string().required(),
+    });
+    await schema.validateAsync(req.body, {
+      abortEarly: false,
+    });
+
+    await Match.create(req.body)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
 exports.viewMatch = async (req, res) => {
-    const data = await Game.find({});
-  res.send(data);
-}; 
+  try {
+    const games = await Game.find({});
+    const match = await Match.find({});
+    res.json({ match, games });
+  } catch (error) {}
+};
