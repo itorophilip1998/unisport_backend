@@ -12,7 +12,13 @@ const port = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public")); 
-app.use(cors());
+var corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200 // For legacy browser support
+    methods: "GET, PUT,POST,DELETE"
+}
+
+app.use(cors(corsOptions));
 
 // routes
 app.use("/", web);
