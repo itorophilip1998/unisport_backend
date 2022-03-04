@@ -12,13 +12,12 @@ const port = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public")); 
-const option={
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204
+
+const corsOptions = {
+	origin: "http://localhost:3000"
 };
-app.use(cors(option));
+app.use(cors(corsOptions));
+
 
 // routes
 app.use("/", web);
